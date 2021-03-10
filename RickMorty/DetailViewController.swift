@@ -11,14 +11,13 @@ import UIKit
 import rick_morty_swift_api
 
 class DetailViewController: UIViewController {
-    //var username: String = "M"
     var character : CharacterModel?
     
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var specie: UILabel!
     
-    override func viewDidLoad() {
+    override func viewDidLoad() {       //modificar los outlets para que se adapten al personaje que queremos
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         name.text = character?.name

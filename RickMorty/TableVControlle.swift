@@ -17,7 +17,7 @@ class TableVController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let rmClient = Client()
-        rmClient.character().getAllCharacters() {
+        rmClient.character().getAllCharacters() {  //importar los personajes
                 switch $0 {
                 case .success(let characters):
                     self.ch = characters
@@ -32,7 +32,7 @@ class TableVController: UITableViewController {
         return ch.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { //creación table view, con nombres  e imágenes de los personajes
         var Cell = self.tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as UITableViewCell
         Cell.textLabel?.text = ch[indexPath.row].name
         let url = URL(string: ch[indexPath.row].image)!
@@ -44,12 +44,12 @@ class TableVController: UITableViewController {
         return Cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //para pasar de la table view a la detail view
         if segue.identifier == "View" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let controller = segue.destination as! DetailViewController
                 let value = ch[indexPath.row]
-                controller.character = value
+                controller.character = value                            //así podemos mandar la info del personaje sobre el que va a ser la detail view
             }
         }
     }
